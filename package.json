@@ -10,6 +10,7 @@
   },
   "scripts": {
     "seed": "mysql -u root <schema.sql && node database/data.js",
+    "seed-psql": "psql -d open_table -f pg-schema.sql",
     "test": "jest",
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js -w database -w server"
@@ -24,8 +25,11 @@
     "enzyme": "^3.9.0",
     "eslint": "^5.15.3",
     "express": "^4.16.4",
+    "mongoose": "^5.5.3",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.10",
+    "pg": "^7.10.0",
+    "pg-copy-streams": "^2.2.0",
     "react": "^15.6.2",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^15.6.1",
@@ -33,6 +37,7 @@
     "react-lightbox-component": "^1.2.1",
     "react-photo-gallery": "^6.3.2",
     "react-test-renderer": "^16.8.6",
+    "sequelize": "^5.7.5",
     "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
     "webpack": "^2.2.1"
