@@ -1,18 +1,48 @@
 config:
   target: 'http://localhost:3003'
   phases:
-    - duration: 30
-      arrivalRate: 1000
+    - duration: 60
+      arrivalRate: 1
+    - duration: 60
+      arrivalRate: 10
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 100
+    - duration: 60
+      arrivalRate: 100
+      rampTo: 1000
+  payload:
+    path: "./artillery-dummy-data.csv"
+    fields:
+      - "name"
+      - "description"
+      - "rating"
+      - "reviews"
+      - "maxPrice"
+      - "foodType"
+      - "tag1"
+      - "tag2"
+      - "tag3"
+      - "isDeleted"
   http:
     pool: 5
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
-  # processor: './incrementID.js'
+  # processor: './randomizeId.js'
 scenarios:
-  - flow:
-    - function: 'getID'
-    - loop:
-        - get:
-            url: "/support/{{ ID }}"
-      count: 1
+  - name: "post req to add single record to db"
+    flow:
+      - post:
+          url: "/restaurants/{{ID}}"
+          json:
+            name: "{{name}}"
+            description: "{{description}}"
+            rating: "{{rating}}"
+            reviews: "{{reviews}}"
+            max_price: "{{maxPrice}}"
+            food_type: "{{foodType}}"
+            tag1: "{{tag1}}"
+            tag2: "{{tag2}}"
+            tag3: "{{tag3}}"
+            isdeleted: "{{isDeleted}}"
