@@ -14,7 +14,6 @@ class Info extends React.Component {
 
   componentDidMount() {
     let urlID = window.location.pathname.slice(12);
-    // console.log(urlID)
     fetch(`${urlID}` || `/restaurants/1`)
       .then(res => res.json())
       .then(
