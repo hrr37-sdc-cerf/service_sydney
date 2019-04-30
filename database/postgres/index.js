@@ -43,10 +43,21 @@ exports.updateById = (id, updateObj, callback) => {
 }
 
 exports.addRecord = (record, callback) => {
+  for (let key in record) {
+    if (typeof record[key] === 'string') {
+      record[key] = escapeQuotes(record[key]);
+    }
+  };
   const {name, description, rating, reviews, max_price, food_type, tag1, tag2, tag3, isdeleted} = record;
 
   let queryString = `INSERT INTO open_table_reviews (name, description, rating, reviews, max_price, food_type, tag1, tag2, tag3, isDeleted) VALUES ('${name}', '${description}', ${rating}, ${reviews}, ${max_price}, '${food_type}', '${tag1}', '${tag2}', '${tag3}', ${isdeleted})`;
 
   sequelize.query(queryString)
   .then((results) => callback(results));
+};
+
+const escapeQuotes = (str) => {
+  str = str.replace(/'/g, "\\'");
+  str = str.replace(/['"]+/g, '');
+  return str;
 };

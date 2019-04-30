@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -13,7 +14,7 @@ app.use('/restaurants/:id', express.static(staticPath));
 app.get('/favicon.ico', (req, res) => res.status(204));
 
 // dynamic endpoint -> /api/restaurants/14 renders data for restaurant 14.
-app.get(`/:id`, (req, res) => {
+app.get(`/restaurants/:id`, (req, res) => {
   let id = req.params.id;
   db.getDataForId(id, (results) => {
     console.log(id, results)
@@ -21,20 +22,20 @@ app.get(`/:id`, (req, res) => {
   });
 });
 
-app.post(`/:id`, (req, res) => {
+app.post(`/restaurants/:id`, (req, res) => {
   db.addRecord(req.body, (results)=> {
     res.send(results);
   })
 });
 
-app.put(`/:id`, (req, res) => {
+app.put(`/restaurants/:id`, (req, res) => {
     let id = req.params.id;
     db.updateById(id, req.body, (results) => {
       res.send(results);
     })
 });
 
-app.delete(`/:id`, (req, res) => {
+app.delete(`/restaurants/:id`, (req, res) => {
   let id = req.params.id;
   db.deleteById(id, (results) => {
     res.send(results);
