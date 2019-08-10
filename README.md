@@ -1,4 +1,4 @@
-# OpenTable FEC
+# FreeTable FEC
 > A service which finds all of the information you may need about nearby restaurants (menu, location, hours, description, reviews, etc.), and allows you to make reservations. This service includes the overview and photo gallery modules.
 
 ## Related Projects

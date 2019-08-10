@@ -13,7 +13,7 @@ class Logo extends React.Component {
       <div id={styles.bigCircle}>
       <div id={styles.innerCircle}></div>
       </div>
-      <div id={styles.logoText}>OpenTable</div>
+      <div id={styles.logoText}>FreeTable</div>
       </div>
     )
   }

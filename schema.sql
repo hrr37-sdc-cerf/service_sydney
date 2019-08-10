@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS opentable_overview;
-CREATE DATABASE opentable_overview;
+DROP DATABASE IF EXISTS freetable_overview;
+CREATE DATABASE freetable_overview;
 
-USE opentable_overview;
+USE freetable_overview;
 
 CREATE TABLE restaurants (
   id int NOT NULL,
